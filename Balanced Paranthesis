@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include"stack.h"
+#include<string.h>
+#include<stdlib.h>
+char opening(char x){
+    if(x == '}')
+        return '{';
+    if(x == ']')
+        return '[';
+    return '(';
+}
+int main()
+{
+    char *c;
+    printf("Enter size\n");
+    scanf("%d",&n);
+    c = (char*)malloc(n*sizeof(char));
+    scanf("%s",c);
+    int i;
+    for(i = 0; i < strlen(c); i++){
+        char *x = (char*)malloc(sizeof(char));
+        x = &c[i];
+        if(c[i] == '{' || c[i] == '[' || c[i] == '('){
+            push(x);
+        }
+        else{
+             if(size() == 0){
+                 printf("NO\n");
+                 return 0;
+             }
+             if(*(char*)pop() != opening(c[i])){
+                 printf("NO\n");
+                 return 0;
+             }
+        }
+    }
+    if(size() == 0)
+        printf("Yes\n");
+    else
+        printf("No\n");
+    return 0;
+}
