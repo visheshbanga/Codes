@@ -1,0 +1,18 @@
+#include<stdio.h>
+int main(){
+    int num;
+    int bit;
+    scanf("%d",&bit); //read first bit
+    num = bit;
+    while(1){
+        scanf("%d",&bit); //read new bit
+        num = num*2 + bit; //update number ((num << 1) + bit)
+        if(num % 3 == 0)
+        {
+            printf("divisible by 3\n");
+        }
+        else
+            printf("Not divisible by 3\n");
+        num = num % 3;
+    }
+}
