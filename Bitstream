@@ -1,3 +1,5 @@
+//A stream of bits 0 or 1 is coming. We have to tell at any time whether it is divisible by 3 or not.
+
 #include<stdio.h>
 int main(){
     int num;
