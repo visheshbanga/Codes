@@ -1,0 +1,17 @@
+#include<stdio.h>
+int powmod(int a,int b,int c){
+    if(b == 0)
+        return 1;
+    int result = powmod(a,b/2,c);
+    if(b % 2){
+        result = (a%c * result%c * result%c);
+    }
+    else
+        result = result*result;
+    return result;
+}
+int main(){
+    int a,b,n;
+    scanf("%d %d %d",&a,&b,&n);
+    printf("%d\n",powmod(a,b,n));
+}
