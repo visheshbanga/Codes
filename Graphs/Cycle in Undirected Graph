@@ -1,0 +1,66 @@
+import java.io.*;
+import java.util.*;
+class graph{
+    private LinkedList<Integer> []adj;
+    boolean []visited;
+    private int v,e;
+    @SuppressWarnings("unchecked")
+    public graph(int v,int e){
+        this.v = v;
+        this.e = e;
+        adj = new LinkedList[v];
+        visited = new boolean[v];
+        for(int i = 0; i < v; i++){
+            adj[i] = new LinkedList();
+        }
+    }
+    public void addEdge(Integer v,Integer w){
+        this.adj[v].add(w);
+        this.adj[w].add(v);
+    }
+    public boolean isCyclic(int v,int parent){
+        visited[v] = true;
+       // Iterator<Integer> it = adj[v].listIterator();
+        for(Integer i : adj[v]){
+            //int i = it.next();
+            if(!visited[i]){
+                if(isCyclic(i,v)){
+                    return true;
+                }
+            }
+            else{
+                if(i != parent && parent != -1){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public boolean hasCycle(){
+        for(int i = 0; i < v; i++){
+            if(!visited[i]){
+                if(isCyclic(i,-1)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
+public class Solution{
+	public static void main(String[] args){
+		
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		while(t > 0){
+		    int v = sc.nextInt();
+		    int e = sc.nextInt();
+		    graph g = new graph(v,e);
+		    for(int i = 0; i < e; i++){
+		        g.addEdge(sc.nextInt(),sc.nextInt());
+		    }
+		    System.out.println(g.hasCycle());
+		    t--;
+		}
+	}
+}
