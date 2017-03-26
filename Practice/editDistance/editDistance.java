@@ -11,7 +11,7 @@ public class editDistance{
         for(int i = 0; i <= l1; i++){
             for(int j = 0; j <= l2; j++){
                 // If first string is empty, only option is to
-                // isnert all characters of second string
+                // insert all characters of second string
                 if(i == 0){
                     edits[i][j] = j;
                 }
